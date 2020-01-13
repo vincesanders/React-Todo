@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
 
@@ -70,7 +72,7 @@ class App extends React.Component {
       <div>
         <header>
           <h2>TO-DO LIST</h2>
-          <button>+</button>
+          <button><FontAwesomeIcon icon={faPlus} /></button>
         </header>
         <TodoForm addTask={this.addTask} />
         <TodoList removeTask={this.removeTask} toggleCompleted={this.toggleCompleted} todoList={this.state.todoList} />
