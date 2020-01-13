@@ -72,6 +72,7 @@ class App extends React.Component {
       <div className='container' >
         <header>
           <h2>TO-DO LIST</h2>
+          {/* Add functionality to hide/show input when clicked (also change icon) */}
           <button id="toggleInputBtn"><FontAwesomeIcon icon={faPlus} /></button>
         </header>
         <TodoForm addTask={this.addTask} />

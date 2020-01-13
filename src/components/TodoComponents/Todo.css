@@ -49,7 +49,8 @@ input {
 	text-indent: 5%;
 	font-weight: 700;
 	font-size: 1.1em;
-	height: 45px;
+    height: 45px;
+    padding-left: 18px;
 }
 
 input:focus {

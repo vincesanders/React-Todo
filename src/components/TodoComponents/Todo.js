@@ -31,6 +31,7 @@ export default ({ id, task, toggleCompleted, removeTask }) => {
         e.target.classList.toggle('done');
         toggleCompleted(id);
     }
+    //TODO: Add functionality to make deleted item slide up and then disappear
     return (
         <li className='listItem' onMouseEnter={rotateIn} onMouseLeave={rotateOut}>
             <span className='deleteItemBtn' onClick={() => removeTask(id)} ><FontAwesomeIcon className='icon' icon={faMinusCircle} /></span>
