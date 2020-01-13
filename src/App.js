@@ -69,14 +69,14 @@ class App extends React.Component {
   render() {
     console.log(this.state.todoList);
     return (
-      <div>
+      <div className='container' >
         <header>
           <h2>TO-DO LIST</h2>
-          <button><FontAwesomeIcon icon={faPlus} /></button>
+          <button id="toggleInputBtn"><FontAwesomeIcon icon={faPlus} /></button>
         </header>
         <TodoForm addTask={this.addTask} />
         <TodoList removeTask={this.removeTask} toggleCompleted={this.toggleCompleted} todoList={this.state.todoList} />
-        <button onClick={this.removeCompleted} >Clear Completed</button>
+        <button className='clearButton' onClick={this.removeCompleted} >Clear Completed</button>
       </div>
     );
   }
