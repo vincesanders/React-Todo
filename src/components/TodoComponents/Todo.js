@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default ({ task }) => {
+export default ({ id, task, toggleCompleted }) => {
     return (
         <li>
             <span>-</span>
-            <span>{task}</span>
+            <span onClick={() => toggleCompleted(id)} >{task}</span>
         </li>
     );
 }
