@@ -52,6 +52,12 @@ class App extends React.Component {
     });
   }
 
+  removeTask = id => {
+    this.setState({
+      todoList: this.state.todoList.filter(task => task.id !== id)
+    });
+  }
+
   render() {
     console.log(this.state.todoList);
     return (
@@ -61,7 +67,7 @@ class App extends React.Component {
           <button>+</button>
         </header>
         <TodoForm addTask={this.addTask} />
-        <TodoList toggleCompleted={this.toggleCompleted} todoList={this.state.todoList} />
+        <TodoList removeTask={this.removeTask} toggleCompleted={this.toggleCompleted} todoList={this.state.todoList} />
       </div>
     );
   }
