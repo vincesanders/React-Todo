@@ -58,6 +58,12 @@ class App extends React.Component {
     });
   }
 
+  removeCompleted = () => {
+    this.setState({
+      todoList: this.state.todoList.filter(task => task.completed === false)
+    })
+  }
+
   render() {
     console.log(this.state.todoList);
     return (
@@ -68,6 +74,7 @@ class App extends React.Component {
         </header>
         <TodoForm addTask={this.addTask} />
         <TodoList removeTask={this.removeTask} toggleCompleted={this.toggleCompleted} todoList={this.state.todoList} />
+        <button onClick={this.removeCompleted} >Clear Completed</button>
       </div>
     );
   }
