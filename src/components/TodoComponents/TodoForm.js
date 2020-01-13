@@ -5,12 +5,25 @@ class TodoForm extends React.Component {
         super();
         this.state = {
             task: ''
+        };
+    }
+
+    handleSubmit = e => {
+        //Add the task when you press enter.
+        if (e.which === 13 && e.target.value !== '') {
+            e.preventDefault();
+            this.props.addTask(this.state.task);
+            this.setState({ task: ''});
         }
+    }
+
+    handleChange = e => {
+        this.setState({ task: e.target.value });
     }
 
     render() {
         return (
-            <input type='test' placeholder='Add New Todo' />
+            <input onKeyDown={this.handleSubmit} onChange={this.handleChange} type='test' placeholder='Add New Todo' value={this.state.task} />
         );
     }
 }

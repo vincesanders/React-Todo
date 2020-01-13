@@ -29,7 +29,7 @@ class App extends React.Component {
       todoList: [
         ...this.state.todoList,
         {
-          name: taskName,
+          task: taskName,
           id: Date.now(),
           completed: false
         }
@@ -44,7 +44,7 @@ class App extends React.Component {
           <h2>TO-DO LIST</h2>
           <button>+</button>
         </header>
-        <TodoForm />
+        <TodoForm addTask={this.addTask} />
         <TodoList todoList={this.state.todoList} />
       </div>
     );

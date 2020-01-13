@@ -7,7 +7,7 @@ export default ({ todoList }) => {
             {/* Map over todoList to dynamically create Todo components */}
             {todoList.map(todoItem => {
                 return (
-                    <Todo task={todoItem.task} />
+                    <Todo key={todoItem.id} task={todoItem.task} />
                 );
             })}
         </ul>
