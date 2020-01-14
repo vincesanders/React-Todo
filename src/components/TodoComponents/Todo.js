@@ -1,37 +1,32 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
-class Todo extends React.Component {
-    constructor(props) {
-        super(props);
-        this.icon = React.createRef();
+const Todo = props =>  {
+    const icon = useRef();
+    const rotateIn = (e) => {
+       icon.current.classList.remove('rotateOut');
+       icon.current.classList.add('rotateIn'); 
     }
-    rotateIn = (e) => {
-       this.icon.current.classList.remove('rotateOut');
-       this.icon.current.classList.add('rotateIn'); 
+    const rotateOut = (e) => {
+        icon.current.classList.remove('rotateIn');
+        icon.current.classList.add('rotateOut');
     }
-    rotateOut = (e) => {
-        this.icon.current.classList.remove('rotateIn');
-        this.icon.current.classList.add('rotateOut');
-    }
-    handleClick = e => {
+    const handleClick = e => {
         e.target.classList.toggle('done');
-        this.props.toggleCompleted(this.props.id);
+        props.toggleCompleted(props.id);
     }
     //TODO: Add functionality to make deleted item slide up and then disappear
-    render() {
-        return (
-            <li className='listItem' onMouseEnter={this.rotateIn} onMouseLeave={this.rotateOut}>
-                <span className='deleteItemBtn' onClick={() => this.props.removeTask(this.props.id)} >
-                    <span ref={this.icon} >
-                        <FontAwesomeIcon className='icon' icon={faMinusCircle} />
-                    </span>
+    return (
+        <li className='listItem' onMouseEnter={rotateIn} onMouseLeave={rotateOut}>
+            <span className='deleteItemBtn' onClick={() => props.removeTask(props.id)} >
+                <span ref={icon} >
+                    <FontAwesomeIcon className='icon' icon={faMinusCircle} />
                 </span>
-                <span className='task' onClick={this.handleClick} >{this.props.task}</span>
-            </li>
-        );
-    }
+            </span>
+            <span className='task' onClick={handleClick} >{props.task}</span>
+        </li>
+    );
 }
 
 export default Todo;
