@@ -2,40 +2,36 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
-export default ({ id, task, toggleCompleted, removeTask }) => {
-    const rotateIn = (e) => {
-        if (e.target.className === 'listItem') {
-            e.target.firstElementChild.firstElementChild.classList.remove('rotateOut');
-            e.target.firstElementChild.firstElementChild.classList.add('rotateIn');
-        } else if (e.target.parentElement.className === 'deleteItemBtn') {
-            e.target.classList.remove('rotateOut');
-            e.target.classList.add('rotateIn');           
-        } else {
-            e.target.parentElement.firstElementChild.firstElementChild.classList.remove('rotateOut');
-            e.target.parentElement.firstElementChild.firstElementChild.classList.add('rotateIn');            
-        }
+class Todo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.icon = React.createRef();
     }
-    const rotateOut = (e) => {
-        if (e.target.className === 'listItem') {
-            e.target.firstElementChild.firstElementChild.classList.remove('rotateIn');
-            e.target.firstElementChild.firstElementChild.classList.add('rotateOut');
-        } else if (e.target.parentElement.className === 'deleteItemBtn') {
-            e.target.classList.remove('rotateIn');
-            e.target.classList.add('rotateOut');           
-        } else {
-            e.target.parentElement.firstElementChild.firstElementChild.classList.remove('rotateIn');
-            e.target.parentElement.firstElementChild.firstElementChild.classList.add('rotateOut');            
-        }
+    rotateIn = (e) => {
+       this.icon.current.classList.remove('rotateOut');
+       this.icon.current.classList.add('rotateIn'); 
     }
-    const handleClick = e => {
+    rotateOut = (e) => {
+        this.icon.current.classList.remove('rotateIn');
+        this.icon.current.classList.add('rotateOut');
+    }
+    handleClick = e => {
         e.target.classList.toggle('done');
-        toggleCompleted(id);
+        this.props.toggleCompleted(this.props.id);
     }
     //TODO: Add functionality to make deleted item slide up and then disappear
-    return (
-        <li className='listItem' onMouseEnter={rotateIn} onMouseLeave={rotateOut}>
-            <span className='deleteItemBtn' onClick={() => removeTask(id)} ><FontAwesomeIcon className='icon' icon={faMinusCircle} /></span>
-            <span onClick={handleClick} >{task}</span>
-        </li>
-    );
+    render() {
+        return (
+            <li className='listItem' onMouseEnter={this.rotateIn} onMouseLeave={this.rotateOut}>
+                <span className='deleteItemBtn' onClick={() => this.props.removeTask(this.props.id)} >
+                    <span ref={this.icon} >
+                        <FontAwesomeIcon className='icon' icon={faMinusCircle} />
+                    </span>
+                </span>
+                <span className='task' onClick={this.handleClick} >{this.props.task}</span>
+            </li>
+        );
+    }
 }
+
+export default Todo;
